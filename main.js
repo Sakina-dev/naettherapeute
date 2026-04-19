@@ -41,3 +41,17 @@
 
     els.forEach(function (el) { observer.observe(el); });
 })();
+
+/**
+ * Formulaire Formspree : affiche le message de confirmation après redirection (?envoye=1)
+ */
+(function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('envoye') !== '1') return;
+
+    var banner = document.getElementById('form-success-banner');
+    if (!banner) return;
+
+    banner.hidden = false;
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+})();

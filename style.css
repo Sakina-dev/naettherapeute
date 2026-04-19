@@ -17,6 +17,13 @@
     --mauve-soft: rgba(214, 193, 221, 0.45);
     --sauge-soft: rgba(194, 213, 201, 0.45);
 
+    /* Boutons — mauve & vert (tons proches des accents du site) */
+    --btn-mauve: #85667d;
+    --btn-mauve-deep: #6d4f65;
+    --btn-sauge: #5f8068;
+    --btn-sauge-deep: #4d6a55;
+    --btn-on-accent: #fcfaf8;
+
     --font-body: 'Montserrat', sans-serif;
     --font-editorial: 'Cormorant Garamond', serif;
 
@@ -143,30 +150,44 @@ p {
     font-size: 0.8rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 .btn-primary {
-    background: var(--color-text);
-    color: var(--color-bg);
-    box-shadow: var(--shadow-soft);
+    color: var(--btn-on-accent);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: linear-gradient(150deg, var(--btn-mauve) 0%, var(--btn-mauve-deep) 100%);
+    box-shadow: 0 10px 28px rgba(109, 79, 101, 0.32);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-air);
+    box-shadow: 0 16px 36px rgba(109, 79, 101, 0.38);
+    background: linear-gradient(150deg, #92708a 0%, var(--btn-mauve) 100%);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--btn-sauge);
+    outline-offset: 3px;
 }
 
 .btn-outline {
-    background: transparent;
-    border-color: var(--color-text);
     color: var(--color-text);
+    background: rgba(255, 255, 255, 0.55);
+    border-color: color-mix(in srgb, var(--btn-sauge) 55%, transparent);
 }
 
 .btn-outline:hover {
-    background: color-mix(in srgb, var(--mauve-soft) 78%, white 22%);
+    transform: translateY(-2px);
     color: var(--color-text);
-    border-color: color-mix(in srgb, var(--mauve-soft) 52%, var(--color-text) 48%);
+    border-color: var(--btn-sauge-deep);
+    background: color-mix(in srgb, var(--sauge-soft) 50%, rgba(255, 255, 255, 0.88) 50%);
+    box-shadow: 0 10px 26px rgba(77, 106, 85, 0.18);
+}
+
+.btn-outline:focus-visible {
+    outline: 2px solid var(--btn-mauve);
+    outline-offset: 3px;
 }
 
 .testimonials-section {
@@ -395,23 +416,6 @@ cite {
     margin-top: 0;
     padding-top: 0;
     overflow: hidden;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 320px;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 60%,
-        var(--color-bg) 100%
-    );
-    z-index: -1;
-    pointer-events: none;
 }
 
 .bg-video {
@@ -1275,6 +1279,33 @@ cite {
     box-shadow: var(--shadow-soft);
 }
 
+.form-card .contact-form {
+    position: relative;
+}
+
+.form-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-success-banner {
+    margin-bottom: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+    background: rgba(194, 213, 201, 0.55);
+    border: 1px solid rgba(59, 47, 51, 0.12);
+}
+
 .info-list {
     margin: 0;
     padding: 0;
@@ -1352,15 +1383,28 @@ cite {
 }
 
 .btn-submit {
-    border: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     font: inherit;
-    color: var(--color-bg);
-    background: var(--color-text);
+    color: var(--btn-on-accent);
+    background: linear-gradient(150deg, var(--btn-sauge) 0%, var(--btn-sauge-deep) 100%);
     padding: 0.9rem 1.6rem;
     border-radius: var(--radius-pill);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    box-shadow: 0 10px 26px rgba(77, 106, 85, 0.28);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(77, 106, 85, 0.34);
+    background: linear-gradient(150deg, #6a8f74 0%, var(--btn-sauge) 100%);
+}
+
+.btn-submit:focus-visible {
+    outline: 2px solid var(--btn-mauve);
+    outline-offset: 3px;
 }
 
 .map-section {
@@ -1892,15 +1936,6 @@ details.faq-item[open] .faq-summary::after {
         display: none;
     }
 
-    .hero::after {
-        height: 120px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            var(--color-bg) 100%
-        );
-    }
-
     .hero .glass-card {
         margin-bottom: 0;
     }
@@ -2021,7 +2056,7 @@ details.faq-item[open] .faq-summary::after {
     }
 
     .blog-page .blog-hero {
-        background: rgba(255, 255, 255, 0.6);
+        background: transparent;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: var(--radius-lg);
@@ -2032,7 +2067,7 @@ details.faq-item[open] .faq-summary::after {
     }
 
     .blog-page .blog-content {
-        background: rgba(255, 255, 255, 0.6);
+        background: transparent;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: var(--radius-lg);
@@ -2041,5 +2076,537 @@ details.faq-item[open] .faq-summary::after {
         margin-inline: 4%;
         margin-top: var(--space-3);
         padding: var(--space-4) 1.15rem var(--space-5);
+    }
+}
+
+/* =========================================================
+   MOBILE (≤768px) — mauve / vert : accueil + contact, tarifs, accomp., blog
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Carte héros : dégradé mauve → vert, même niveau de transparence qu’avant (~0,45) */
+    .page-accueil .hero .glass-card {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.45) 0%,
+            rgba(194, 213, 201, 0.45) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.55);
+        border-top-color: rgba(255, 255, 255, 0.75);
+        border-left-color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* Section intro : vert doux */
+    .page-accueil .intro-text {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.34) 0%,
+            rgba(194, 213, 201, 0.12) 100%
+        );
+    }
+
+    /* Carte « Et si vous preniez… » : mauve */
+    .page-accueil .intro-message .intro-card-item {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.52) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Mots-clés : impairs mauve, pairs vert */
+    .page-accueil .intro-keywords .keyword-word:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accueil .intro-keywords .keyword-word:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Bloc symptômes : fond mauve léger */
+    .page-accueil .pain-section {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.3) 0%,
+            rgba(214, 193, 221, 0.1) 100%
+        );
+    }
+
+    /* Cartes 1 / 3 mauve, carte 2 vert */
+    .page-accueil .pain-item:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.52) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accueil .pain-item:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.55) 0%,
+            rgba(178, 205, 188, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Section Méthode : fond vert doux (alterne avec pain en mauve) */
+    .page-accueil .method-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.26) 0%,
+            rgba(194, 213, 201, 0.08) 100%
+        );
+    }
+
+    /* Comprendre + Libérer : mauve bien visible (plus de « blanc » dominé par le vert) */
+    .page-accueil .method-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.52) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Apaiser : vert sauge */
+    .page-accueil .method-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.55) 0%,
+            rgba(178, 205, 188, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Qui suis-je : panneau mauve (alterne après section Méthode verte) */
+    .page-accueil .about-panel {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.5) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* Témoignages : bandeau vert, cartes mauve / vert */
+    .page-accueil .testimonials-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.3) 0%,
+            rgba(194, 213, 201, 0.1) 100%
+        );
+    }
+
+    .page-accueil .testimonial-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accueil .testimonial-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accueil .site-footer {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.38) 0%,
+            rgba(214, 193, 221, 0.16) 100%
+        );
+    }
+
+    /* ---------- Contact ---------- */
+    .page-contact .contact-hero {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.34) 0%,
+            rgba(194, 213, 201, 0.1) 100%
+        );
+    }
+
+    .page-contact .contact-section {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.18) 0%,
+            rgba(214, 193, 221, 0.06) 100%
+        );
+    }
+
+    .page-contact .info-card {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.52) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-contact .form-card {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.55) 0%,
+            rgba(178, 205, 188, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-contact .testimonials-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.3) 0%,
+            rgba(194, 213, 201, 0.1) 100%
+        );
+    }
+
+    .page-contact .testimonial-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-contact .testimonial-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-contact .map-overlay-card {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.72);
+    }
+
+    .page-contact .site-footer {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.32) 0%,
+            rgba(194, 213, 201, 0.12) 100%
+        );
+    }
+
+    /* ---------- Tarifs ---------- */
+    .page-tarifs .hero-tarifs {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.32) 0%,
+            rgba(214, 193, 221, 0.1) 100%
+        );
+    }
+
+    .page-tarifs .pricing-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.22) 0%,
+            rgba(194, 213, 201, 0.06) 100%
+        );
+    }
+
+    .page-tarifs .pricing-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.62) 0%,
+            rgba(200, 175, 210, 0.52) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-tarifs .pricing-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.55) 0%,
+            rgba(178, 205, 188, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-tarifs .legal-note {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.42) 0%,
+            rgba(200, 175, 210, 0.32) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.78);
+    }
+
+    .page-tarifs .testimonials-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.28) 0%,
+            rgba(194, 213, 201, 0.08) 100%
+        );
+    }
+
+    .page-tarifs .testimonial-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-tarifs .testimonial-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-tarifs .site-footer {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.34) 0%,
+            rgba(214, 193, 221, 0.14) 100%
+        );
+    }
+
+    /* ---------- Accompagnements ---------- */
+    .page-accompagnements .page-header {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.28) 0%,
+            rgba(194, 213, 201, 0.08) 100%
+        );
+    }
+
+    .page-accompagnements .why-consult {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.22) 0%,
+            rgba(214, 193, 221, 0.06) 100%
+        );
+    }
+
+    .page-accompagnements .symptom-item:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .symptom-item:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .guide-bridge-card {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(194, 213, 201, 0.42) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .quiz-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.24) 0%,
+            rgba(194, 213, 201, 0.06) 100%
+        );
+    }
+
+    .page-accompagnements .quiz-card {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .method-steps {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.2) 0%,
+            rgba(194, 213, 201, 0.05) 100%
+        );
+    }
+
+    .page-accompagnements .step-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .step-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .locations {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.2) 0%,
+            rgba(214, 193, 221, 0.06) 100%
+        );
+    }
+
+    .page-accompagnements .location-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .location-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .testimonials-section {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.28) 0%,
+            rgba(194, 213, 201, 0.08) 100%
+        );
+    }
+
+    .page-accompagnements .testimonial-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .testimonial-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-accompagnements .site-footer {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.32) 0%,
+            rgba(194, 213, 201, 0.12) 100%
+        );
+    }
+
+    /* ---------- Blog (body.blog-page) ---------- */
+    body.blog-page .blog-hero {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.46) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .blog-content {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.38) 0%,
+            rgba(178, 205, 188, 0.22) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .blog-tips > .blog-tip-card:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.58) 0%,
+            rgba(200, 175, 210, 0.48) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .blog-tips > .blog-tip-card:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.52) 0%,
+            rgba(178, 205, 188, 0.44) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .faq-accordion .faq-item:nth-child(odd) {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.48) 0%,
+            rgba(200, 175, 210, 0.38) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .faq-accordion .faq-item:nth-child(even) {
+        background: linear-gradient(
+            180deg,
+            rgba(194, 213, 201, 0.46) 0%,
+            rgba(178, 205, 188, 0.36) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.72);
+    }
+
+    body.blog-page .blog-cta-box {
+        background: linear-gradient(
+            145deg,
+            rgba(214, 193, 221, 0.55) 0%,
+            rgba(194, 213, 201, 0.45) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.75);
+    }
+
+    body.blog-page .site-footer {
+        background: linear-gradient(
+            180deg,
+            rgba(214, 193, 221, 0.34) 0%,
+            rgba(214, 193, 221, 0.12) 100%
+        );
     }
 }
